@@ -82,7 +82,7 @@ class Runtime(object):
         self.pipeline = pipeline
         self.log = logging.getLogger('%s.Runtime' % __name__)
         self.setup_write_logging(write_log)
-        self.network = ConcreteNetwork(self)
+        self.network = ConcreteNetwork(self)# handle network stuff with mininet
         self.prev_network = self.network.copy()
         self.forwarding = main(**kwargs)
         self.get_subpol_stats = True # TODO: make cmdline option to pyretic.py
@@ -120,7 +120,7 @@ class Runtime(object):
             self.vlan_to_extended_values_db = {}
             self.extended_values_to_vlan_db = {}
             self.extended_values_lock = RLock()
-            self.dynamic_sub_pols = set()
+            self.dynamic_sub_pols = set()#check dynamic policies and check with actual one ? 
             self.in_network_update = False
             self.in_bucket_apply = False
             self.network_triggered_policy_update = False
@@ -131,7 +131,7 @@ class Runtime(object):
             self.last_queried_time = {}
             self.global_outstanding_deletes_lock = Lock()
             self.global_outstanding_deletes = {}
-            self.manager = Manager()
+            self.manager = Manager()#handles different python processes
             self.old_rules_lock = Lock()
             # self.old_rules = self.manager.list() # not multiprocess state anymore!
             self.old_rules = []
